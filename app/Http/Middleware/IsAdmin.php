@@ -23,4 +23,3 @@ class IsAdmin
         return redirect('home');
     }
 }
-https://github.com/RKPhongnt/training_linhdh

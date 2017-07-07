@@ -64,6 +64,8 @@
     <script src="{{ asset('asset/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    @yield('script')
+
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
