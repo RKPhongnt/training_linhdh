@@ -34,4 +34,9 @@ class User extends Authenticatable
     {
         return $this->isAdmin;
     }
+
+    public function divisions()
+    {
+        return $this->hasMany('App\Division','manager_id');
+    }
 }
