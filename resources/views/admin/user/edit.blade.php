@@ -1,6 +1,6 @@
-@extends('layouts.index')
-@section('content')
-	<div class="container-fluid">
+@extends('admin.index')
+@section('admin')
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">User
@@ -26,6 +26,15 @@
                     <div class="form-group">
                         <label>Password</label>
                         <input type="password" class="form-control" name="password" placeholder="Please Enter Password" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>User Level</label>
+                        <label class="radio-inline">
+                            <input name="isAdmin" value="1" type="radio">Admin
+                        </label>
+                        <label class="radio-inline">
+                            <input name="isAdmin" value="0" type="radio" checked="">Member
+                        </label>
                     </div>
                     <button type="submit" class="btn btn-default">User Edit</button>
                     <button type="reset" class="btn btn-default">Reset</button>

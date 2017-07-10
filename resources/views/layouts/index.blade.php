@@ -35,17 +35,15 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        @include('layouts.menu')
+        @include('layouts.header')
 	
         <!-- Page Content -->
-        <div id="page-wrapper">
-            @yield('content')
-            <!-- /.container-fluid -->
-        </div>
-        <!-- /#page-wrapper -->
+        @yield('content')
+        
+        
 
     </div>
-    <!-- /#wrapper -->
+   
 
     <!-- jQuery -->
     <script src="{{ asset('asset/bower_components/jquery/dist/jquery.min.js') }}"></script>

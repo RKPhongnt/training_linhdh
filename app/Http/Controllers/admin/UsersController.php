@@ -17,7 +17,7 @@ class UsersController extends AdminController
     {
         //
         $users = User::all();
-        return view('user.index',['users'=>$users]);
+        return view('admin.user.index',['users'=>$users]);
     }
 
     /**
@@ -28,7 +28,7 @@ class UsersController extends AdminController
     public function create()
     {
         //
-        return view('user.create');
+        return view('admin.user.create');
     }
 
     /**
@@ -74,7 +74,7 @@ class UsersController extends AdminController
         //
         $user = User::find($id);
         if($user)
-        	return view('user.show',['user'=>$user]);
+        	return view('admin.user.show',['user'=>$user]);
         else
         	return redirect('admin/users')->with('flash','No have user');
     }
@@ -90,7 +90,7 @@ class UsersController extends AdminController
         //
         $user = User::find($id);
         if($user)
-        	return view('user.edit',['user'=>$user]);
+        	return view('admin.user.edit',['user'=>$user]);
         else
         	return redirect('admin/users')->with('flash','No have user');
     }

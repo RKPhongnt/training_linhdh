@@ -24,3 +24,9 @@ Route::prefix('admin')->group(function () {
 	Route::resource('users', 'admin\UsersController');
 	Route::resource('divisions', 'admin\DivisionsController');
 });
+
+
+Route::resource('divisions','DivisionsController',['except'=>['create','store','destroy']]);
+Route::resource('users','UsersController',['except'=>['create','store','destroy','updateDivision']]);
+Route::post('/search','DivisionsController@search')->name('search');
+Route::post('users/{id}/update','UsersController@updateDivision');

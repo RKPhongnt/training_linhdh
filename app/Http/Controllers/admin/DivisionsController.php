@@ -17,7 +17,7 @@ class DivisionsController extends AdminController
     {
         //
         $divisons = Division::all();
-        return view('division.index',['divisons'=>$divisons]);
+        return view('admin.division.index',['divisons'=>$divisons]);
     }
 
     /**
@@ -29,7 +29,7 @@ class DivisionsController extends AdminController
     {
         //
         $users = User::all();
-        return view('division.create',['users'=>$users]);
+        return view('admin.division.create',['users'=>$users]);
     }
 
     /**
@@ -69,7 +69,7 @@ class DivisionsController extends AdminController
     {
         //
         $division = Division::find($id);
-        return view('division.show',['division'=>$division]);
+        return view('admin.division.show',['division'=>$division]);
     }
 
     /**
@@ -83,7 +83,7 @@ class DivisionsController extends AdminController
         //
         $division = Division::find($id);
         $users = User::all();
-        return view('division.edit',['division'=>$division, 'users'=>$users]);
+        return view('admin.division.edit',['division'=>$division, 'users'=>$users]);
     }
 
     /**

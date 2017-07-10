@@ -1,11 +1,97 @@
 @extends('layouts.index')
 @section('content')
-	<p>name: {{$division->name}}</p>
-	<p>manager: {{$division->manager->name}}</p>
-	<p>staff:</p>
-	<ul>
-		@foreach($division->staffs as $staff)
-			<li>{{$staff->name}}</li>
-		@endforeach
-	</ul>
+	<div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header division-content" data-division={{$division->id}}>{{$division->name}}
+                    <small>List user</small>
+                </h1>
+                @if(session('flash'))
+                    <div class="alert alert-success">{{session('flash')}}</div>
+                @endif
+            </div>
+            <!-- /.col-lg-12 -->
+            <table class="table table-striped table-bordered table-hover list-user-in-division" id="dataTables-example">
+                <thead>
+                    <tr align="center">
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($division->staffs as $user)
+                        <tr class="odd gradeX" align="center" id = "user_{{$user->id}}">
+                            <td>{{$user->id}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td class="center"><i class="fa fa-trash-o fa-fw " ></i> <a href="#" class="delete-user-btn" data={{$user->id}}>Delete</a></td>                            
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+           	<div class="form-group col-md-4">
+                <label>Insert new user</label>
+                <input class="form-control" name="name"  id="insert-user" />
+                <div class="result"></div>
+            </div>
+            
+        </div>
+        <!-- /.row -->
+    </div>
+@endsection
+@section('script')
+	<script type="text/javascript">
+		function addUser(id) {
+   		 	$.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var division_id = $('.division-content').attr('data-division');
+            $.post('/users/'+id+'/update',
+		        {
+		           division_id: division_id,
+		        },
+		        function(response){
+		        	$('.list-user-in-division tbody').prepend(
+		        		'<tr class="odd gradeX" align="center" id = "user_'+response.id+'">'+
+                            '<td>'+response.id+'</td>'+
+                            '<td>'+response.name+'</td>'+
+                            '<td>'+response.email+'</td>'+
+                            '<td class="center">'+
+                            	'<i class="fa fa-trash-o fa-fw " ></i>'+
+                            	'<a href="#" class="delete-user-btn" data='+response.id+'>Delete</a>'+
+                            '</td>'+
+                        '</tr>'		
+		        	);
+		        });
+		}
+
+		$(document).ready(function(){
+            $('#insert-user').change(function(){
+            	$('.result').html("");
+                $.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var data = $(this).val();
+                $.post("/search",
+		        {
+		          name: data,
+		        },
+		        function(respont){
+		        	//console.log(respont.length);	
+		        	for(var i=0; i<respont.length; i++)
+		        	{
+		        		$('.result').prepend('<p class="choose-user" onclick="addUser(this.id)" id='+respont[i].id+'>'+respont[i].name+'</p>');
+		        		//console.log(respont[i].name);	
+		        	}
+		            
+		        });
+            });
+        });
+	</script>
 @endsection

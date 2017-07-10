@@ -39,4 +39,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Division','manager_id');
     }
+
+    public function belongDivision()
+    {
+        return $this->belongsTo('App\Division','devision_id');
+    }
 }

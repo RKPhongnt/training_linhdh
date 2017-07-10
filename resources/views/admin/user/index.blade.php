@@ -1,5 +1,5 @@
-@extends('layouts.index')
-@section('content')
+@extends('admin.index')
+@section('admin')
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
