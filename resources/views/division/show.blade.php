@@ -31,11 +31,11 @@
                     @endforeach
                 </tbody>
             </table>
-           	<div class="form-group col-md-4">
+           	<div class="form-group col-md-3">
                 <label>Insert new user</label>
                 <input class="form-control" name="name"  id="insert-user" />
-                <div class="result"></div>
             </div>
+            <div class="result col-md-3 list-group"></div>
             
         </div>
         <!-- /.row -->
@@ -70,7 +70,7 @@
 		}
 
 		$(document).ready(function(){
-            $('#insert-user').change(function(){
+            $('#insert-user').keyup(function(){
             	$('.result').html("");
                 $.ajaxSetup({
                     headers: {
@@ -83,11 +83,9 @@
 		          name: data,
 		        },
 		        function(respont){
-		        	//console.log(respont.length);	
 		        	for(var i=0; i<respont.length; i++)
 		        	{
-		        		$('.result').prepend('<p class="choose-user" onclick="addUser(this.id)" id='+respont[i].id+'>'+respont[i].name+'</p>');
-		        		//console.log(respont[i].name);	
+		        		$('.result').prepend('<a href="#" onclick="addUser(this.id)" id='+respont[i].id+' class="list-group-item">'+respont[i].name+'</a>');
 		        	}
 		            
 		        });

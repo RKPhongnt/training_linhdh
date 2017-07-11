@@ -13,31 +13,11 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-            </li>
-           
-            <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i> Division<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{route('divisions.index')}}">List Division</a>
-                    </li>
-                    <li>
-                        <a href="{{route('divisions.create')}}">Add Division</a>
-                    </li>
-                </ul>
+                <a href="{{url('admin/divisions')}}"><i class="fa fa-cube fa-fw"></i> Division</a>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{route('users.index')}}">List User</a>
-                    </li>
-                    <li>
-                        <a href="{{route('users.create')}}">Add User</a>
-                    </li>
-                </ul>
+                <a href="{{url('admin/users')}}"><i class="fa fa-users fa-fw"></i> User</a>
                 <!-- /.nav-second-level -->
             </li>
         </ul>

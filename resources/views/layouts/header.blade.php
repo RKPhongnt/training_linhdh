@@ -6,11 +6,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">
-            @if(Auth::check())
+        @if(Auth::check())
+            <a class="navbar-brand" 
+                @if(Auth::user()->isAdmin )
+                    href={{url('admin')}}>
+                @else
+                    href={{url("/users/".Auth::user()->id)}}>
+                @endif    
                 {{Auth::user()->name}} 
-            @endif
-        </a>
+            </a>
+        @endif
     </div>
     <!-- /.navbar-header -->
 
@@ -21,12 +26,12 @@
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                <li><a href="{{url("/users/".Auth::user()->id)}}"><i class="fa fa-user fa-fw"></i> User Profile</a>
                 </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
+                <li><a href="{{route('divisions.index')}}"><i class="fa fa-gear fa-fw"></i> division</a>
                 <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="{{route('logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->

@@ -11,6 +11,7 @@
                 @endif
             </div>
             <!-- /.col-lg-12 -->
+            <a href="{{route('divisions.create')}}" class="btn btn-primary">Add Division</a>
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
@@ -25,10 +26,12 @@
                     @foreach($divisons as $division)
                         <tr class="odd gradeX" align="center" id = "user_{{$division->id}}">
                             <td>{{$division->id}}</td>
-                            <td>{{$division->name}}</td>
+                            <td>
+                                <a href="{{url('admin/divisions/'.$division->id)}}">{{$division->name}}</a>
+                            </td>
                             <td>{{$division->manager->name}}</td>
                             <td class="center"><i class="fa fa-trash-o fa-fw " ></i> <a href="#" class="delete-user-btn" data={{$division->id}}>Delete</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('divisions.edit',$division->id)}}">Edit</a></td>  
+                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{url('admin/divisions/'.$division->id.'/edit')}}">Edit</a></td>  
                         </tr>
                     @endforeach
                 </tbody>

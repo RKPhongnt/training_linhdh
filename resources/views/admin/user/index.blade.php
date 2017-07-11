@@ -11,6 +11,7 @@
                 @endif
             </div>
             <!-- /.col-lg-12 -->
+             <a href="{{route('users.create')}}" class="btn btn-primary">Add User</a>
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
@@ -28,7 +29,11 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->division}}</td>
+                            <td>
+                                @if($user->belongDivision)
+                                    {{$user->belongDivision->name}}
+                                @endif
+                            </td>
                             
                                 {{-- <i class="fa fa-trash-o  fa-fw"></i>
                                 <button type="submit" form="form-delete-{{ $user->id }}"> Delete</button>
@@ -39,7 +44,7 @@
                                 </form> --}}
                             <td class="center"><i class="fa fa-trash-o fa-fw " ></i> <a href="#" class="delete-user-btn" data={{$user->id}}>Delete</a></td>
                             
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('users.edit',$user->id)}}">Edit</a></td>  
+                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{url('admin/users/'.$user->id.'/edit')}}">Edit</a></td>  
                         </tr>
                     @endforeach
                 </tbody>

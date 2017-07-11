@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.index');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
@@ -26,7 +24,7 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::resource('divisions','DivisionsController',['except'=>['create','store','destroy']]);
-Route::resource('users','UsersController',['except'=>['create','store','destroy','updateDivision']]);
+Route::resource('divisions','DivisionsController',['only'=>['index','show']]);
+Route::resource('users','UsersController',['except='=>['create','store','destroy','updateDivision']]);
 Route::post('/search','DivisionsController@search')->name('search');
 Route::post('users/{id}/update','UsersController@updateDivision');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Division;
+use Auth;
 class UsersController extends Controller
 {
     /**
@@ -32,7 +34,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        if($user)
+        if($user && $user == Auth::user())
         {
             return view('user.edit',['user'=>$user]);
         }
@@ -60,7 +62,7 @@ class UsersController extends Controller
             'password.min' => 'pass too short'
         ]);
         $user = User::find($id);
-        if ($user) {
+        if ($user && $user == Auth::user()) {
             $user->name = $request->name;
             $user->password = bcrypt($request->password);
             $user->save();
@@ -81,7 +83,9 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
-        if($user)
+        $division = Division::find($request->division_id);
+
+        if($user && (Auth::user() == $division->manager || Auth::user()->isAdmin ) )
         {
             $user->devision_id = $request->division_id;
             $user->save();
