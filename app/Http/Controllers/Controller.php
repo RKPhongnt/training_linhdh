@@ -12,6 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function __construct()
 	{
+		$this->middleware('isActive')->except(['getChangePassword', 'updatePassword']);;
 		$this->middleware('auth');
 	}
 }

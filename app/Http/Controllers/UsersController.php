@@ -94,4 +94,27 @@ class UsersController extends Controller
         else 
             return false;
     }
+
+    public function getChangePassword($id)
+    {   
+        $user = User::find($id);
+        if($user && $user == Auth::user())
+            return view('user.changePassword',['user'=>$user]);
+        else 
+            return redirect('home');
+    }
+
+    public function updatePassword(Request $rq, $id)
+    {
+        $user = User::find($id);
+        if($user && $user == Auth::user())
+        {
+            $user->password = bcrypt($rq->password);
+            $user->isActive = 1;
+            $user->save();
+            return redirect()->route('users.show',$user);
+        }
+        else 
+            return redirect('home');
+    }
 }

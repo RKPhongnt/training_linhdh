@@ -34,14 +34,27 @@ class User extends Authenticatable
     {
         return $this->isAdmin;
     }
-
+    /*
+    * return list division that user manage
+    */ 
     public function divisions()
     {
         return $this->hasMany('App\Division','manager_id');
     }
 
+    /*
+    *return division this user belong to
+    */ 
     public function belongDivision()
     {
         return $this->belongsTo('App\Division','devision_id');
+    }
+
+    /*
+    * check is actived account
+    */ 
+    public function isActive()
+    {
+        return $this->isActive;
     }
 }

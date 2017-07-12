@@ -43,6 +43,6 @@ class DivisionsController extends Controller
     public function search(Request $request)
     {
     	$name = $request->name;
-    	return User::where('name', 'LIKE', "%$name%")->get();
+    	return User::where([['name', 'LIKE', "%$name%"],['isActive','=','1']])->get();
     }
 }

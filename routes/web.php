@@ -28,3 +28,5 @@ Route::resource('divisions','DivisionsController',['only'=>['index','show']]);
 Route::resource('users','UsersController',['except='=>['create','store','destroy','updateDivision']]);
 Route::post('/search','DivisionsController@search')->name('search');
 Route::post('users/{id}/update','UsersController@updateDivision');
+Route::get('changePassword/{id}','UsersController@getChangePassword')->name('changePassword');
+Route::post('changePassword/{id}','UsersController@updatePassword');
