@@ -11,7 +11,7 @@
                 @endif
             </div>
             <!-- /.col-lg-12 -->
-             <a href="{{route('users.create')}}" class="btn btn-primary">Add User</a>
+             <a href="{{url('admin/users/create')}}" class="btn btn-primary">Add User</a>
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
