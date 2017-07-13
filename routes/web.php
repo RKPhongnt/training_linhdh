@@ -22,6 +22,7 @@ Route::prefix('admin')->group(function () {
 	Route::resource('users', 'admin\UsersController');
 	Route::resource('divisions', 'admin\DivisionsController');
 	Route::post('passwordReset', 'admin\ResetPasswordController@resetPassword');
+	Route::get('export','admin\ExcelController@export')->name('exportExcel');
 });
 
 

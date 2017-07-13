@@ -50,6 +50,7 @@
                 </tbody>
             </table>
             <button class="btn btn-primary click-to-reset">Reset Password</button>
+            <a href="{{route('exportExcel')}}" class="btn btn-primary">Export to Excel</a>
         </div>
         <!-- /.row -->
     </div>
