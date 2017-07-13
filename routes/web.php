@@ -21,6 +21,7 @@ Route::prefix('admin')->group(function () {
 	Route::get('/','admin\UsersController@index');
 	Route::resource('users', 'admin\UsersController');
 	Route::resource('divisions', 'admin\DivisionsController');
+	Route::post('passwordReset', 'admin\ResetPasswordController@resetPassword');
 });
 
 

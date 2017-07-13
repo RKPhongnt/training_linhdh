@@ -15,7 +15,7 @@
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
-                        <th>ID</th>
+                        <th>choose</th>
                         <th>Username</th>
                         <th>Email</th>
                         <th>division</th>
@@ -26,7 +26,7 @@
                 <tbody>
                     @foreach($users as $user)
                         <tr class="odd gradeX" align="center" id = "user_{{$user->id}}">
-                            <td>{{$user->id}}</td>
+                            <td><input type="checkbox" value="{{$user->id}}" class="choose-to-resetPassword"></td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>
@@ -49,6 +49,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <button class="btn btn-primary click-to-reset">Reset Password</button>
         </div>
         <!-- /.row -->
     </div>
@@ -73,6 +74,24 @@
                     }
                 });
                 $(this).closest('tr').hide();
+            });
+
+            $('.click-to-reset').click(function(){
+                var list_id = [];
+                $('.choose-to-resetPassword:checked').each(function(i){
+                    list_id[i] = $(this).val();
+                });
+                $.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.post("/admin/passwordReset",
+                {
+                  data: list_id,
+                },
+                function(respont){
+                });
             });
         });
     </script>
