@@ -3,24 +3,24 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User
-                    <small>List</small>
+                <h1 class="page-header">{{trans('text.user')}}
+                    <small>{{trans('text.list')}}</small>
                 </h1>
                 @if(session('flash'))
                     <div class="alert alert-success">{{session('flash')}}</div>
                 @endif
             </div>
             <!-- /.col-lg-12 -->
-             <a href="{{url('admin/users/create')}}" class="btn btn-primary">Add User</a>
+             <a href="{{url('admin/users/create')}}" class="btn btn-primary">{{trans('text.add_user')}}</a>
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
-                        <th>choose</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>division</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
+                        <th>{{trans('text.choose')}}</th>
+                        <th>{{trans('text.username')}}</th>
+                        <th>{{trans('text.email')}}</th>
+                        <th>{{trans('text.division')}}</th>
+                        <th>{{trans('text.delete')}}</th>
+                        <th>{{trans('text.edit')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,15 +42,15 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                 </form> --}}
-                            <td class="center"><i class="fa fa-trash-o fa-fw " ></i> <a href="#" class="delete-user-btn" data={{$user->id}}>Delete</a></td>
+                            <td class="center"><i class="fa fa-trash-o fa-fw " ></i> <a href="#" class="delete-user-btn" data={{$user->id}}>{{trans('text.delete')}}</a></td>
                             
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{url('admin/users/'.$user->id.'/edit')}}">Edit</a></td>  
+                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{url('admin/users/'.$user->id.'/edit')}}">{{trans('text.edit')}}</a></td>  
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            <button class="btn btn-primary click-to-reset">Reset Password</button>
-            <a href="{{route('exportExcel')}}" class="btn btn-primary">Export to Excel</a>
+            <button class="btn btn-primary click-to-reset">{{trans('text.reset_password')}}</button>
+            <a href="{{route('exportExcel')}}" class="btn btn-primary">{{trans('text.export_to_excel')}}</a>
         </div>
         <!-- /.row -->
     </div>

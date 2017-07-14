@@ -13,11 +13,11 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="{{url('admin/divisions')}}"><i class="fa fa-cube fa-fw"></i> Division</a>
+                <a href="{{url('admin/divisions')}}"><i class="fa fa-cube fa-fw"></i> {{trans('text.division')}}</a>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="{{url('admin/users')}}"><i class="fa fa-users fa-fw"></i> User</a>
+                <a href="{{url('admin/users')}}"><i class="fa fa-users fa-fw"></i> {{trans('text.user')}}</a>
                 <!-- /.nav-second-level -->
             </li>
         </ul>

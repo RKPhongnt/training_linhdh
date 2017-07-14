@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'manager' => \App\Http\Middleware\IsManager::class,
         'isActive' => \App\Http\Middleware\IsActive::class,
+        'locale' => \App\Http\Middleware\Locale::class,
     ];
 }
