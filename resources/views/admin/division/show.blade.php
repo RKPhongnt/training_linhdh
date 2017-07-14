@@ -3,35 +3,35 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header division-content" data-division={{$division->id}}>{{$division->name}}
-                <small>List user</small>
+                <small>{{trans('text.list_user')}}</small>
             </h1>
             @if(session('flash'))
                 <div class="alert alert-success">{{session('flash')}}</div>
             @endif
         </div>
         <!-- /.col-lg-12 -->
-        <table class="table table-striped table-bordered table-hover list-user-in-division" id="dataTables-example">
+        <table class="table table-striped table-bordered table-hover list-user-in-division" >
             <thead>
                 <tr align="center">
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Delete</th>
+                    <th class="center">{{trans('text.id')}}</th>
+                    <th class="center">{{trans('text.username')}}</th>
+                    <th class="center">{{trans('text.email')}}</th>
+                    <th class="center">{{trans('text.delete')}}</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($division->staffs as $user)
                     <tr class="odd gradeX" align="center" id = "user_{{$user->id}}">
                         <td>{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
+                        <td><a href="{{url('admin/users/'.$user->id)}}">{{$user->name}}</a></td>
                         <td>{{$user->email}}</td>
-                        <td class="center"><i class="fa fa-trash-o fa-fw " ></i> <a href="#" class="delete-user-btn" data={{$user->id}}>Delete</a></td>                            
+                        <td class="center"><i class="fa fa-trash-o fa-fw " ></i> <a href="#" class="delete-user-btn" data={{$user->id}}>{{trans('text.delete')}}</a></td>                            
                     </tr>
                 @endforeach
             </tbody>
         </table>
        	<div class="form-group col-md-3">
-            <label>Insert new user</label>
+            <label>{{trans('text.insert_new_user')}}</label>
             <input class="form-control" name="name"  id="insert-user" />
         </div>
         <div class="result col-md-3 list-group"></div>

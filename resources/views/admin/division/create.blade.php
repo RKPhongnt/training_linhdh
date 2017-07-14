@@ -3,8 +3,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Division
-                    <small>Add</small>
+                <h1 class="page-header">{{trans('text.division')}}
+                    <small>{{trans('text.add')}}</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -19,19 +19,19 @@
                 <form action="{{url('admin/divisions')}}" method="POST">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label>Name</label>
+                        <label>{{trans('text.name')}}</label>
                         <input class="form-control" name="name" placeholder="Please Enter Name Division" required />
                     </div>
                     <div class="form-group">
-                        <label>Manager</label>
+                        <label>{{trans('text.manager')}}</label>
                         <select name="manager_id" required>
                             @foreach($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default">Add</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="submit" class="btn btn-default">{{trans('text.save')}}</button>
+                    <button type="reset" class="btn btn-default">{{trans('text.reset')}}</button>
                 <form>
             </div>
         </div>

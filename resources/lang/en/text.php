@@ -10,7 +10,7 @@ return [
     'user_profile' => 'User profile',
     'logout' => 'Logout',
     'add_user' => 'Add user',
-    'choose' => 'choose',
+    'choose_to_reset_pass' => 'choose to reset password',
     'username' => 'user name',
     'email' => 'email',
     'delete' => 'delete',
@@ -21,5 +21,16 @@ return [
     'id' => 'id',
     'name' => 'name',
     'manager' => 'manager',
-
+    'active' => 'active',
+    'user_level' => 'user level',
+    'admin' => 'Admin',
+    'member' => "menber",
+    "save" => "Edit user",
+    "reset" => "reset",
+    "list_user" => "list user",
+    "insert_new_user" => "Insert new user",
+    "add" => "create new",
+    "view" => "view",
+    "insert_member" => "Insert new member",
+    "admin_page" => "admin page"
 ];

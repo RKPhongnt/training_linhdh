@@ -3,8 +3,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User
-                    <small>Edit</small>
+                <h1 class="page-header">{{trans('text.user')}}
+                    <small>{{trans('text.list')}}</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -16,28 +16,36 @@
                         @endforeach
                     </div>
                 @endif
-                <form action="{{route('users.update', $user->id)}}" method="POST">
+                <form action="{{url('admin/users/'.$user->id)}}" method="POST">
                     {{csrf_field()}}
                     {{ method_field('PUT') }}
                     <div class="form-group">
-                        <label>Username</label>
+                        <label>{{trans('text.username')}}</label>
                         <input class="form-control" name="name" placeholder="Please Enter Username" required value="{{$user->name}}" />
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Please Enter Password" required/>
+                        <label>{{trans('text.division')}}</label>
+                        <select name='division_id' class="form-control">
+                            @foreach($divisions as $div)
+                                <option value="{{$div->id}}"
+                                    @if($div->id == $user->devision_id)
+                                        selected 
+                                    @endif
+                                >{{$div->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>User Level</label>
+                        <label>{{trans('text.user_level')}}</label>
                         <label class="radio-inline">
-                            <input name="isAdmin" value="1" type="radio">Admin
+                            <input name="isAdmin" value="1" type="radio">{{trans('text.admin')}}
                         </label>
                         <label class="radio-inline">
-                            <input name="isAdmin" value="0" type="radio" checked="">Member
+                            <input name="isAdmin" value="0" type="radio" checked="">{{trans('text.member')}}
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-default">User Edit</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="submit" class="btn btn-default">{{trans('text.save')}}</button>
+                    <button type="reset" class="btn btn-default">{{trans('text.reset')}}</button>
                 <form>
             </div>
         </div>

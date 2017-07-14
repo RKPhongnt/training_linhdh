@@ -18,9 +18,7 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         if($user)
-        {
             return view('user.show',['user'=>$user]);
-        }
         else 
             return redirect('home');
     }
@@ -35,9 +33,7 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         if($user && $user == Auth::user())
-        {
             return view('user.edit',['user'=>$user]);
-        }
         else 
             return redirect('home');
     }
@@ -85,16 +81,17 @@ class UsersController extends Controller
         $user = User::find($id);
         $division = Division::find($request->division_id);
 
-        if($user && (Auth::user() == $division->manager || Auth::user()->isAdmin ) )
-        {
+        if($user && (Auth::user() == $division->manager || Auth::user()->isAdmin ) ){
             $user->devision_id = $request->division_id;
             $user->save();
             return $user;
-        }
-        else 
+        } else 
             return false;
     }
 
+    /*
+     * get view change password
+     */ 
     public function getChangePassword($id)
     {   
         $user = User::find($id);
@@ -104,17 +101,19 @@ class UsersController extends Controller
             return redirect('home');
     }
 
+    /*
+     * change password
+     */ 
     public function updatePassword(Request $rq, $id)
     {
         $user = User::find($id);
-        if($user && $user == Auth::user())
-        {
+        if($user && $user == Auth::user()){
             $user->password = bcrypt($rq->password);
             $user->isActive = 1;
             $user->save();
             return redirect()->route('users.show',$user);
-        }
-        else 
+        } else 
             return redirect('home');
     }
+
 }

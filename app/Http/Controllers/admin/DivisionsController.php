@@ -124,12 +124,10 @@ class DivisionsController extends AdminController
     {
         //
         $division = Division::find($id);
-        if($division)
-        {
+        if($division){
             $division->delete();
             return true;
-        }
-        else
+        } else
             return false;
     }
 }

@@ -7,10 +7,7 @@
 				    <div class="thumbnail">
 				      	<div class="caption">
 					        <h3>{{$div->name}}</h3>
-					        @foreach($div->staffs as $staff)
-					        	<p>{{$staff->name}}</p>
-					        @endforeach
-					        <p><a href="{{route('divisions.show',$div->id)}}" class="btn btn-primary" role="button">view</a> </p>
+					        <p><a href="{{route('divisions.show',$div->id)}}" class="btn btn-primary" role="button">{{trans('text.view')}}</a> </p>
 					    </div>
 				    </div>
 				</div>

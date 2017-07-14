@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
-
+use Auth;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -67,4 +67,11 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
+    /*
+    * check current user
+    */ 
+    public function is_current_user($user)
+    {
+        return Auth::user()->id == $user->id;
+    }
 }

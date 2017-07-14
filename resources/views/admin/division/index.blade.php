@@ -11,15 +11,14 @@
                 @endif
             </div>
             <!-- /.col-lg-12 -->
-            <a href="{{route('divisions.create')}}" class="btn btn-primary">{{trans('text.add_division')}}</a>
-            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr align="center">
-                        <th>{{trans('text.id')}}</th>
-                        <th>{{trans('text.name')}}</th>
-                        <th>{{trans('text.manager')}}</th>
-                        <th>{{trans('text.delete')}}</th>
-                        <th>{{trans('text.edit')}}</th>
+                        <th class="center">{{trans('text.id')}}</th>
+                        <th class="center">{{trans('text.name')}}</th>
+                        <th class="center">{{trans('text.manager')}}</th>
+                        <th class="center">{{trans('text.delete')}}</th>
+                        <th class="center">{{trans('text.edit')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +35,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <a href="{{route('divisions.create')}}" class="btn btn-primary">{{trans('text.add_division')}}</a>
         </div>
         <!-- /.row -->
     </div>
@@ -47,19 +47,22 @@
     <script>
         $(document).ready(function(){
             $('.delete-user-btn').click(function(){
-                $.ajaxSetup({
-                    headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                var data = $(this).attr('data');
-                $.ajax({
-                    url: '/admin/divisions/'+data,
-                    type: 'DELETE',  // user.destroy
-                    success: function(result) {  
-                    }
-                });
-                $(this).closest('tr').hide();
+                var check = confirm("Want to delete?");
+                if(check){
+                    $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    var data = $(this).attr('data');
+                    $.ajax({
+                        url: '/admin/divisions/'+data,
+                        type: 'DELETE',  // user.destroy
+                        success: function(result) {  
+                        }
+                    });
+                    $(this).closest('tr').hide();
+                }
             });
         });
     </script>

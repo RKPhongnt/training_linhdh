@@ -3,8 +3,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User
-                    <small>Edit</small>
+                <h1 class="page-header">{{trans('text.division')}}
+                    <small>{{trans('text.edit')}}</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -24,8 +24,8 @@
                         <input class="form-control" name="name" placeholder="Please Enter Username" required value="{{$division->name}}" />
                     </div>
                     <div class="form-group">
-                        <label>manager</label>
-                        <select name="manager_id" required>
+                        <label>{{trans('text.manager')}}</label>
+                        <select name="manager_id" required class="form-control">
                             @foreach($users as $user)
                                 <option value="{{$user->id}}"
                                 @if($division->manager->id == $user->id)
@@ -35,8 +35,8 @@
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default">division Edit</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="submit" class="btn btn-default">{{trans('text.save')}}</button>
+                    <button type="reset" class="btn btn-default">{{trans('text.reset')}}</button>
                 <form>
             </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\admin\AdminController;
 use App\User;
+use App\Division;
 class UsersController extends AdminController
 {
     //
@@ -28,7 +29,8 @@ class UsersController extends AdminController
     public function create()
     {
         //
-        return view('admin.user.create');
+        $divisions = Division::all();
+        return view('admin.user.create',['divisions'=>$divisions]);
     }
 
     /**
@@ -59,6 +61,7 @@ class UsersController extends AdminController
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->isAdmin = $request->isAdmin;
+        $user->devision_id = $request->division_id;
         $user->save();
         return redirect('admin/users')->with('flash','Create user success');
     }
@@ -89,8 +92,9 @@ class UsersController extends AdminController
     {
         //
         $user = User::find($id);
+        $divisions = Division::all();
         if($user)
-        	return view('admin.user.edit',['user'=>$user]);
+        	return view('admin.user.edit',['user'=>$user, 'divisions'=>$divisions]);
         else
         	return redirect('admin/users')->with('flash','No have user');
     }
@@ -108,19 +112,16 @@ class UsersController extends AdminController
        
          $this->validate($request,[
         	'name'=>'required|min:3',
-        	'password'=>'required|min:6'
         ],
         [
         	'name.required' => 'name must requied',
 			'name.min' => 'length name than 3 character',
-			'password.required' => 'pass must required',
-			'password.min' => 'pass too short'
         ]);
         $user = User::find($id);
-        if ($user) {
+        if ($user){
         	$user->name = $request->name;
-	        $user->password = bcrypt($request->password);
 	        $user->isAdmin = $request->isAdmin;
+            $user->devision_id = $request->division_id;
 	        $user->save();
         	return redirect('admin/users')->with('flash','Update user success');
         } else {
@@ -138,12 +139,10 @@ class UsersController extends AdminController
     {
         //
         $user = User::find($id);
-        if($user)
-        {
+        if($user){
         	$user->delete();
         	return true;
-        }
-        else
+        } else
         	return false;
     }
 }

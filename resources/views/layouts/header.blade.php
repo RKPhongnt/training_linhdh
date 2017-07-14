@@ -6,20 +6,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        @if(Auth::check())
-            <a class="navbar-brand" 
-                @if(Auth::user()->isAdmin )
-                    href={{url('admin')}}>
-                @else
-                    href={{url("/users/".Auth::user()->id)}}>
-                @endif    
-                {{Auth::user()->name}} 
-            </a>
-        @endif
+        <a href="{{route('home')}}"><img src="http://rikkeisoft.com/wp-content/themes/rikkei/images/common/logo.png" style="width: 180px; padding: 10px" ></a>
     </div>
     <!-- /.navbar-header -->
     <div>
-         <form action="{{ route('switchLang') }}" class="form-lang" method="post">
+         <form action="{{ route('switchLang') }}" class="form-lang" method="post" style="float: right;">
             <select name="locale" onchange='this.form.submit();'>
                 <option value="en">English</option>
                 <option value="vi"{{ Lang::locale() === 'vi' ? 'selected' : '' }}>Tiếng Việt</option>
@@ -27,13 +18,17 @@
             {{ csrf_field() }}
             </form>
     </div>
-    <ul class="nav navbar-top-links navbar-right">
+    <ul class="nav navbar-top-links navbar-right" style="margin-top: 36px;">
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                {{Auth::user()->name}}
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
+                @if(Auth::user()->isAdmin)
+                    <li><a href="{{url("/admin/")}}"><i class="fa fa-user fa-fw"></i> {{trans('text.admin_page')}}</a></li>
+                @endif
                 <li><a href="{{url("/users/".Auth::user()->id)}}"><i class="fa fa-user fa-fw"></i> {{trans('text.user_profile')}}</a>
                 </li>
                 </li>

@@ -26,10 +26,8 @@ class DivisionsController extends Controller
     public function show($id)
     {
     	$division = Division::find($id);
-    	if($division && (Auth::user() == $division->manager || Auth::user()->isAdmin ) )
-    	{
+    	if($division && (Auth::user() == $division->manager || Auth::user()->isAdmin))
     		return view('division.show',['division'=>$division]);
-    	}
     	else 
     		return redirect()->route('divisions.index');
     }
