@@ -32,5 +32,6 @@ return [
     "add" => "Thêm mới",
     "view" => "xem chi tiết",
     "insert_member" => "Thêm mới thành viên",
-    "admin_page" => "Trang admin"
+    "admin_page" => "Trang admin",
+    "password" => "Mật khẩu",
 ];

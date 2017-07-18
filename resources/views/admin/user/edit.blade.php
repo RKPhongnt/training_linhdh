@@ -36,6 +36,10 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label>{{trans('text.password')}}</label>
+                        <input type="password" class="form-control" name="password" placeholder="Please Enter Password" />
+                    </div>
+                    <div class="form-group">
                         <label>{{trans('text.user_level')}}</label>
                         <label class="radio-inline">
                             <input name="isAdmin" value="1" type="radio">{{trans('text.admin')}}

@@ -121,6 +121,8 @@ class UsersController extends AdminController
         if ($user){
         	$user->name = $request->name;
 	        $user->isAdmin = $request->isAdmin;
+            if($request->password != null)
+                $user->password = bcrypt($request->password);
             $user->devision_id = $request->division_id;
 	        $user->save();
         	return redirect('admin/users')->with('flash','Update user success');

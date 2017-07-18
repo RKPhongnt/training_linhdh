@@ -32,5 +32,6 @@ return [
     "add" => "create new",
     "view" => "view",
     "insert_member" => "Insert new member",
-    "admin_page" => "admin page"
+    "admin_page" => "admin page",
+    "password" => "password"
 ];

@@ -28,7 +28,11 @@
                             <td>
                                 <a href="{{url('admin/divisions/'.$division->id)}}">{{$division->name}}</a>
                             </td>
-                            <td>{{$division->manager->name}}</td>
+                            <td>
+                                @if($division->manager)
+                                    {{$division->manager->name}}
+                                @endif
+                            </td>
                             <td class="center"><i class="fa fa-trash-o fa-fw " ></i> <a href="#" class="delete-user-btn" data={{$division->id}}>{{trans('text.delete')}}</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{url('admin/divisions/'.$division->id.'/edit')}}">{{trans('text.edit')}}</a></td>  
                         </tr>
