@@ -25,7 +25,7 @@ return [
     'user_level' => 'user level',
     'admin' => 'Admin',
     'member' => "menber",
-    "save" => "Edit user",
+    "save" => "Save`",
     "reset" => "reset",
     "list_user" => "list user",
     "insert_new_user" => "Insert new user",
@@ -33,5 +33,6 @@ return [
     "view" => "view",
     "insert_member" => "Insert new member",
     "admin_page" => "admin page",
-    "password" => "password"
+    "password" => "password",
+    "avatar" => "avatar",
 ];

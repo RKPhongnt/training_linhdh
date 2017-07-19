@@ -34,4 +34,5 @@ return [
     "insert_member" => "Thêm mới thành viên",
     "admin_page" => "Trang admin",
     "password" => "Mật khẩu",
+    "avatar" => "Ảnh đại diện"
 ];

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\admin\AdminController;
 use App\User;
 use App\Division;
+use Image;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+
 class UsersController extends AdminController
 {
     //
@@ -42,10 +46,13 @@ class UsersController extends AdminController
     public function store(Request $request)
     {
         //
+
+        $user = new User;   
         $this->validate($request,[
         	'name'=>'required|min:3',
         	'email'=>'required|email|unique:users,email',
-        	'password'=>'required|min:6'
+        	'password'=>'required|min:6',
+            'avatar' => 'mimes:jpeg,png'
         ],
         [
         	'name.required' => 'name must requied',
@@ -54,9 +61,15 @@ class UsersController extends AdminController
 			'email.email' => 'email not correct',
 			'email.unique' => 'email existed',
 			'password.required' => 'pass must required',
-			'password.min' => 'pass too short'
+			'password.min' => 'pass too short',
+            'avatar.mimes' => 'avatar is not correct format'
         ]);
-        $user = new User;
+        if ($request->file('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            $path = $request->avatar->storeAs('public/avatars', $filename);
+            $user->avatar = $filename;
+        }
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
@@ -110,7 +123,7 @@ class UsersController extends AdminController
     {
         //
        
-         $this->validate($request,[
+        $this->validate($request,[
         	'name'=>'required|min:3',
         ],
         [
@@ -121,7 +134,26 @@ class UsersController extends AdminController
         if ($user){
         	$user->name = $request->name;
 	        $user->isAdmin = $request->isAdmin;
+            if ($request->file('avatar')) {
+                $this->validate($request,[
+                    'avatar' => 'mimes:jpeg,png'
+                ],
+                [
+                    'avatar.mimes' => 'avatar is not correct format'
+                ]);
+                $avatar = $request->file('avatar');
+                $filename = time() . '.' . $avatar->getClientOriginalExtension();
+                $path = $request->avatar->storeAs('public/avatars', $filename);
+                $user->avatar = $filename;
+            }
             if($request->password != null)
+                $this->validate($request,[
+                    'password'=>'required|min:6'
+                ],
+                [
+                    'password.required' => 'pass must required',
+                    'password.min' => 'pass too short'
+                ]);
                 $user->password = bcrypt($request->password);
             $user->devision_id = $request->division_id;
 	        $user->save();

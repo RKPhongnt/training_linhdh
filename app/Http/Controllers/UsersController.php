@@ -61,6 +61,18 @@ class UsersController extends Controller
         if ($user && $user == Auth::user()) {
             $user->name = $request->name;
             $user->password = bcrypt($request->password);
+            if ($request->file('avatar')) {
+                $this->validate($request,[
+                    'avatar' => 'mimes:jpeg,png'
+                ],
+                [
+                    'avatar.mimes' => 'avatar is not correct format'
+                ]);
+                $avatar = $request->file('avatar');
+                $filename = time() . '.' . $avatar->getClientOriginalExtension();
+                $path = $request->avatar->storeAs('public/avatars', $filename);
+                $user->avatar = $filename;
+            }
             $user->save();
             return redirect()->route('users.show',$user->id)->with('flash','Update user success');
         } else {

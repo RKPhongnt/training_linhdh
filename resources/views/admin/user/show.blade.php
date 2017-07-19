@@ -16,6 +16,17 @@
 					@endif
 			  	<li class="list-group-item"><a href="{{url('admin/users/'.$user->id.'/edit')}}" class="btn btn-primary">{{trans('text.edit')}}</a></li>
 			</ul>
+			<div class="col-md-3">
+				<div class="img-circle avatar">
+                    <img class="img-circle  " 
+	                    @if($user->avatar)
+	                            src="{{Storage::url('avatars/'.$user->avatar)}}"
+	                        @else
+	                            src="https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"
+	                        @endif
+	                    />
+                </div>
+			</div>
 		</div>
 	</div>
 @endsection

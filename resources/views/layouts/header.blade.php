@@ -18,12 +18,18 @@
             {{ csrf_field() }}
             </form>
     </div>
-    <ul class="nav navbar-top-links navbar-right" style="margin-top: 36px;">
+    <ul class="nav navbar-top-links navbar-right" style="margin-top: 9px;">
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <img class="img-circle" style="width: 50px;height: 50px" 
+                    @if(Auth::user()->avatar)
+                        src="{{Storage::url('avatars/'.Auth::user()->avatar)}}"
+                    @else
+                        src="https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"
+                    @endif
+                />    
                 {{Auth::user()->name}}
-                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 @if(Auth::user()->isAdmin)

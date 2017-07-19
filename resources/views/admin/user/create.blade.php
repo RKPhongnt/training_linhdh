@@ -16,7 +16,7 @@
                         @endforeach
                     </div>
                 @endif
-                <form action="{{url('admin/users')}}" method="POST">
+                <form action="{{url('admin/users')}}" method="POST"  enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label>{{trans('text.username')}}</label>
@@ -39,6 +39,10 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label>{{trans('text.avatar')}}</label>
+                        <input type="file" class="form-control upload-avatar" name="avatar" />
+                    </div>
+                    <div class="form-group">
                         <label>{{trans('text.user_level')}}</label>
                         <label class="radio-inline">
                             <input name="isAdmin" value="1" type="radio">{{trans('text.admin')}}
@@ -50,6 +54,10 @@
                     <button type="submit" class="btn btn-default">{{trans('text.save')}}</button>
                     <button type="reset" class="btn btn-default">{{trans('text.reset')}}</button>
                 <form>
+            </div>
+            <div class="col-lg-3 ">
+                <div class="img-circle avatar">
+                </div>
             </div>
         </div>
         <!-- /.row -->

@@ -7,4 +7,12 @@
 .center {
 	text-align: center !important;
 }
-
+.avatar {
+	width: 200px;
+}
+.avatar img{
+	width: 200px;
+	height: 200px;
+	border: 1px solid #f5f8fa;
+	border-radius: 50%;
+}

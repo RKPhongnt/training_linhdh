@@ -16,7 +16,7 @@
                         @endforeach
                     </div>
                 @endif
-                <form action="{{route('users.update', $user->id)}}" method="POST">
+                <form action="{{route('users.update', $user->id)}}" method="POST" enctype="multipart/form-data">
                     {{csrf_field()}}
                     {{ method_field('PUT') }}
                     <div class="form-group">
@@ -27,9 +27,24 @@
                         <label>{{trans('text.password')}}</label>
                         <input type="password" class="form-control" name="password" placeholder="Please Enter Password" required/>
                     </div>
+                    <div class="form-group">
+                        <label>{{trans('text.avatar')}}</label>
+                        <input type="file" class="form-control upload-avatar" name="avatar" />
+                    </div>
                     <button type="submit" class="btn btn-default">{{trans('text.save')}}</button>
                     <button type="reset" class="btn btn-default">{{trans('text.reset')}}</button>
                 <form>
+            </div>
+            <div class="col-lg-3">
+                <div class="img-circle avatar">
+                    <img class="img-circle avatar " 
+                        @if($user->avatar)
+                                src="{{Storage::url('avatars/'.$user->avatar)}}"
+                            @else
+                                src="https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"
+                            @endif
+                        />
+                </div>
             </div>
         </div>
         <!-- /.row -->

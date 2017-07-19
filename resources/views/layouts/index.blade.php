@@ -60,7 +60,7 @@
     <!-- DataTables JavaScript -->
     <script src="{{ asset('asset/bower_components/DataTables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('asset/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
-
+    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     @yield('script')
 
