@@ -174,8 +174,12 @@ class UsersController extends AdminController
         //
         $user = User::find($id);
         if($user){
-        	$user->delete();
-        	return true;
+            if(empty($user->divisions))
+                return false;
+            else {
+                $user->delete();
+                return true;
+            }
         } else
         	return false;
     }

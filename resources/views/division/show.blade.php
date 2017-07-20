@@ -90,6 +90,24 @@
 		            
 		        });
             });
+
+            $('.delete-user-btn').on('click',function(){
+                var element = $(this);
+                var user_id = element.attr('data');
+                var division_id = $('.division-content').attr('data-division');
+                $.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.post("/delete-user-in-division/"+division_id,
+                {
+                  user_id: user_id,
+                },
+                function(respont){
+                    element.closest('tr').hide();
+                });
+            });
         });
 	</script>
 @endsection

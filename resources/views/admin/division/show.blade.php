@@ -30,6 +30,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="col-md-12">
+            <a href="{{route('exportExcelUserInDivision',$division->id)}}" class="btn btn-primary">{{trans('text.export_to_excel')}}</a>
+        </div>
        	<div class="form-group col-md-3">
             <label>{{trans('text.insert_new_user')}}</label>
             <input class="form-control" name="name"  id="insert-user" />

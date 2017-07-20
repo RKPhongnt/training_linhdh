@@ -43,4 +43,21 @@ class DivisionsController extends Controller
     	$name = $request->name;
     	return User::where([['name', 'LIKE', "%$name%"],['isActive','=','1']])->get();
     }
+
+    /**
+    * delete user in division
+    */
+    public function deleteUser(Request $rq, $id)
+    {
+        $division = Division::find($id);
+        $user = User::find($rq->user_id);
+        //return $user->id;
+        if($division && (Auth::user() == $division->manager || Auth::user()->isAdmin)){
+            $user->devision_id = null;
+            $user->save();
+            return "ok";
+        }
+        else 
+            return "false";
+    }
 }

@@ -14,9 +14,10 @@
             <table class="table table-striped table-bordered table-hover" >
                 <thead>
                     <tr align="center" >
-                        <th class="center">{{trans('text.choose_to_reset_pass')}}</th>
+                        <th class="center" style="width: 125px">{{trans('text.choose_to_reset_pass')}}</th>
                         <th class="center">{{trans('text.username')}}</th>
                         <th class="center">{{trans('text.email')}}</th>
+                        <th class="center">{{trans('text.avatar')}}</th>
                         <th class="center">{{trans('text.active')}}</th>
                         <th class="center">{{trans('text.division')}}</th>
                         <th class="center">{{trans('text.delete')}}</th>
@@ -29,6 +30,15 @@
                             <td><input type="checkbox" value="{{$user->id}}" class="choose-to-resetPassword"></td>
                             <td><a href="{{url('admin/users/'.$user->id)}}">{{$user->name}}</a></td>
                             <td>{{$user->email}}</td>
+                            <td style="width: 150px">
+                                <img style="width: 50px;height: 50px" 
+                                    @if($user->avatar)
+                                        src="{{Storage::url('avatars/'.$user->avatar)}}"
+                                    @else
+                                        src="https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"
+                                    @endif
+                                />
+                            </td>
                             <td>
                                 @if($user->isActive)
                                     <i class="fa fa-check" aria-hidden="true"></i></td>
@@ -54,7 +64,7 @@
                 </tbody>
             </table>
             <button class="btn btn-primary click-to-reset">{{trans('text.reset_password')}}</button>
-            <a href="{{route('exportExcel')}}" class="btn btn-primary">{{trans('text.export_to_excel')}}</a>
+            <a href="{{route('exportExcelAllUser')}}" class="btn btn-primary">{{trans('text.export_to_excel')}}</a>
             <a href="{{url('admin/users/create')}}" class="btn btn-primary">{{trans('text.add_user')}}</a>
         </div>
         <!-- /.row -->
@@ -78,7 +88,8 @@
                     $.ajax({
                         url: '/admin/users/'+data,
                         type: 'DELETE',  // user.destroy
-                        success: function(result) {  
+                        success: function(result) {
+                            console.log(result)  
                         }
                     });
                     $(this).closest('tr').hide();

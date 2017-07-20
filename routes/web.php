@@ -22,7 +22,8 @@ Route::group(['middleware'=>'locale','prefix'=>Session::get('locale')], function
 		Route::resource('users', 'admin\UsersController');
 		Route::resource('divisions', 'admin\DivisionsController');
 		Route::post('passwordReset', 'admin\ResetPasswordController@resetPassword')->name('passwordReset');
-		Route::get('export','admin\ExcelController@export')->name('exportExcel');
+		Route::get('exportExcelAllUser','admin\ExcelController@exportExcelAllUser')->name('exportExcelAllUser');
+		Route::get('exportExcelUserInDivision/{id}','admin\ExcelController@exportExcelUserInDivision')->name('exportExcelUserInDivision');
 	});
 
 
@@ -32,7 +33,7 @@ Route::group(['middleware'=>'locale','prefix'=>Session::get('locale')], function
 	Route::post('users/{id}/update','UsersController@updateDivision');
 	Route::get('changePassword/{id}','UsersController@getChangePassword')->name('changePassword');
 	Route::post('changePassword/{id}','UsersController@updatePassword');
-
+	Route::post('delete-user-in-division/{id}','DivisionsController@deleteUser')->name('deleteUserInDivison');
 	Route::post('/lang', [
         'as' => 'switchLang',
         'uses' => 'LangController@changeLang',
