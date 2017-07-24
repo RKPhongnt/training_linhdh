@@ -22,7 +22,8 @@ class UsersController extends AdminController
     {
         //
         $users = User::all();
-        return view('admin.user.index',['users'=>$users]);
+        $divisions = Division::all();
+        return view('admin.user.newIndex',['users'=>$users,'divisions'=>$divisions]);
     }
 
     /**
@@ -182,5 +183,20 @@ class UsersController extends AdminController
             }
         } else
         	return false;
+    }
+
+    public function displayAlowDivision($id)
+    {
+        $division = Division::find($id); 
+        $users = $division->staffs? $division->staffs : null;
+        return view('admin.user.list-user',['users'=>$users]);
+    }
+
+     public function searchUser(Request $request)
+    {
+        $name = $request->data;
+        $users =  User::where('name', 'LIKE', "%$name%")->get();
+        return view('admin.user.list-user',['users'=>$users]);
+        //return ["name"=>$name,"users"=>$users];
     }
 }

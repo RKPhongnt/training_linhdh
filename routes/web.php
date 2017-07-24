@@ -24,6 +24,8 @@ Route::group(['middleware'=>'locale','prefix'=>Session::get('locale')], function
 		Route::post('passwordReset', 'admin\ResetPasswordController@resetPassword')->name('passwordReset');
 		Route::get('exportExcelAllUser','admin\ExcelController@exportExcelAllUser')->name('exportExcelAllUser');
 		Route::get('exportExcelUserInDivision/{id}','admin\ExcelController@exportExcelUserInDivision')->name('exportExcelUserInDivision');
+		Route::get('user-in-divisions/{id}','admin\UsersController@displayAlowDivision');
+		Route::post('searchUser','admin\UsersController@searchUser')->name('serachUser');
 	});
 
 
